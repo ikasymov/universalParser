@@ -14,13 +14,22 @@ let dict = {
   'user/follow': events.UserFollow,
 };
 
-router.post('/', function (req, res, next) {
-  try{
-    let eventsObject = new dict[req.body.event](req);
-    eventsObject.start();
-  }catch(e){
-    throw e
+router.post('/', async function (req, res, next) {
+  let a = new events.NewMessage(req);
+  if (req.body.event === 'message/new'){
+    await a.start();
+    console.log('hi')
+    res.end()
+  }else{
+    res.end()
   }
+
+  // try{
+  //   let eventsObject = new dict[req.body.event](req);
+  //   await eventsObject.start();
+  // }catch(e){
+  //   throw e
+  // }
 });
 
 module.exports = router;
