@@ -7,15 +7,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
-let dict = {
-  'message/new': events.NewMessage,
-  'message/update': events.UpdateMessage,
-  'user/follow': events.UserFollow,
-};
+//
+// let dict = {
+//   'message/new': events.NewMessage,
+//   'message/update': events.UpdateMessage,
+//   'user/follow': events.UserFollow,
+// };
 
 router.post('/', async function (req, res, next) {
-  let a = new events.NewMessage(req);
+  let a = new events.new_message(req);
   if (req.body.event === 'message/new'){
     await a.start();
     console.log('hi')

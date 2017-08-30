@@ -48,6 +48,6 @@ UserFollow.prototype = Object.create(Step.prototype);
 UserFollow.prototype.constructor = UserFollow;
 
 
-module.exports = NewMessage;
-module.exports = UpdateMessage;
-module.exports = UserFollow;
+module.exports.new_message = NewMessage;
+module.exports.update_message = UpdateMessage;
+module.exports.user_follow = UserFollow;
