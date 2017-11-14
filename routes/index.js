@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-let events = require('../Events');
+let nambaone = require('nambaonebot');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,28 +8,21 @@ router.get('/', function(req, res, next) {
 });
 
 //
-// let dict = {
-//   'message/new': events.NewMessage,
-//   'message/update': events.UpdateMessage,
-//   'user/follow': events.UserFollow,
-// };
-
 router.post('/', async function (req, res, next) {
-  let a = new events.new_message(req);
-  if (req.body.event === 'message/new'){
-    await a.start();
-    console.log('hi')
-    res.end()
-  }else{
-    res.end()
+  try{
+    
+    nambaone.NewMessage.prototype.start = async ()=>{
+      this.sendMessage('Hello world')
+    };
+    let config = {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODg4MzI2NzQxLCJwaG9uZSI6IjYwMTgiLCJwYXNzd29yZCI6IiQyYSQxMCRyMjFwa1BYQ21MZzBsLmN3UjdNN2QuS0w4RDF3eURIQlowUkZ5L29DdWszN0l6WU1qSnQyRyIsImlzQm90Ijp0cnVlLCJjb3VudHJ5Ijp0cnVlLCJpYXQiOjE1MTA2MzkwMTN9.aDrfTpbJeY89iXMXW-9HD3LpIn76Y7A7-eZjzG3VBdM',
+      nambaOne: 'https://api.namba1.co',
+      bot_name: 'Универсальный'
+    };
+    return await nambaone.start(req, config)
+  }catch(e){
+    console.log(e)
   }
-
-  // try{
-  //   let eventsObject = new dict[req.body.event](req);
-  //   await eventsObject.start();
-  // }catch(e){
-  //   throw e
-  // }
 });
 
 module.exports = router;
