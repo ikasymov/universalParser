@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.post('/', async function (req, res, next) {
   try{
     
-    nambaone.NewMessage.prototype.start = async ()=>{
+    nambaone.NewMessage.prototype.start = async function(){
       this.sendMessage('Hello world')
     };
     let config = {
